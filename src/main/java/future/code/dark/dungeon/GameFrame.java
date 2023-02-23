@@ -2,30 +2,27 @@ package future.code.dark.dungeon;
 
 import future.code.dark.dungeon.controller.MovementController;
 import future.code.dark.dungeon.service.GameMaster;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+
+import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static future.code.dark.dungeon.config.Configuration.GAME_FRAMES_PER_SECOND;
-import static future.code.dark.dungeon.config.Configuration.SPRITE_SIZE;
+import static future.code.dark.dungeon.config.Configuration.*;
 
 public class GameFrame extends JPanel implements ActionListener {
 
     private final GameMaster gameMaster;
     Timer timer;
+    JFrame frame;
 
     public GameFrame(JFrame frame) {
         timer = new Timer(1000 / GAME_FRAMES_PER_SECOND, this);
         this.gameMaster = GameMaster.getInstance();
-
-
+        this.frame = frame;
         frame.setSize(gameMaster.getMap().getWidth() * SPRITE_SIZE, gameMaster.getMap().getHeight() * SPRITE_SIZE);
         frame.setLocationRelativeTo(null);
         timer.start();
-
         frame.addKeyListener(new MovementController(gameMaster.getPlayer()));
     }
 
@@ -33,6 +30,12 @@ public class GameFrame extends JPanel implements ActionListener {
     public void paint(Graphics graphics) {
         gameMaster.renderFrame(graphics);
         gameMaster.renderEnemiesAndPlayer(graphics);
+        if(gameMaster.win){
+            frame.setSize(new ImageIcon(VICTORY_SPRITE).getIconWidth(), new ImageIcon(VICTORY_SPRITE).getIconHeight());
+        }
+        if(gameMaster.gameOver){
+            frame.setSize(new ImageIcon(GAME_OVER_SPRITE).getIconWidth(), new ImageIcon(GAME_OVER_SPRITE).getIconHeight());
+        }
     }
 
 

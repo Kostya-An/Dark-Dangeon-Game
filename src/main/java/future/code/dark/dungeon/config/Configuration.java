@@ -23,8 +23,8 @@ public interface Configuration {
     String LAND_SPRITE = "src/main/resources/assets/land/ground.png";
     String EXIT_SPRITE = "src/main/resources/assets/land/out.png";
     String COIN_SPRITE = "src/main/resources/assets/land/collectible.png";
-    String VICTORY_SPRITE = "src/main/resources/assets/victory.jpg";
-    String GAME_OVER_SPRITE = "src/main/resources/assets/game_over_screen.jpeg";
+    String VICTORY_SPRITE = "src/main/resources/assets/victory1.jpg";
+    String GAME_OVER_SPRITE = "src/main/resources/assets/game_over_screen1.png";
     String[] GHOST_ANIMATION = {
         "src/main/resources/assets/ghost/tile000.png",
                 "src/main/resources/assets/ghost/tile001.png",
