@@ -66,12 +66,12 @@ public class Enemy extends DynamicObject {
     private Boolean isAllowedSurface(Direction d) {
         char ch = 0;
         try {
-            switch (d){
-                case UP -> ch = GameMaster.getInstance().getMap().getMap()[yPosition-1][xPosition];
-                case DOWN -> ch = GameMaster.getInstance().getMap().getMap()[yPosition+1][xPosition];
-                case LEFT -> ch = GameMaster.getInstance().getMap().getMap()[yPosition][xPosition-1];
-                default -> ch = GameMaster.getInstance().getMap().getMap()[yPosition][xPosition+1];
-            }
+            ch = switch (d) {
+                case UP -> GameMaster.getInstance().getMap().getMap()[yPosition - 1][xPosition];
+                case DOWN -> GameMaster.getInstance().getMap().getMap()[yPosition + 1][xPosition];
+                case LEFT -> GameMaster.getInstance().getMap().getMap()[yPosition][xPosition - 1];
+                default -> GameMaster.getInstance().getMap().getMap()[yPosition][xPosition + 1];
+            };
         }catch (Exception e){
             timer.stop();
         }
@@ -106,21 +106,17 @@ public class Enemy extends DynamicObject {
         }
     }
     Direction[] neighbors(Direction d){
-        switch (d){
-            case UP:
-            case DOWN:
-                return new Direction[]{ Direction.LEFT, Direction.RIGHT };
-            case LEFT:
-            default:
-                return new Direction[]{ Direction.UP, Direction.DOWN };
-        }
+        return switch (d) {
+            case UP, DOWN -> new Direction[]{Direction.LEFT, Direction.RIGHT};
+            case LEFT, RIGHT -> new Direction[]{Direction.UP, Direction.DOWN};
+        };
     }
     Direction further(Direction d){
-        switch (d){
-            case UP: return Direction.DOWN;
-            case DOWN: return Direction.UP;
-            case LEFT: return Direction.RIGHT;
-            default: return Direction.LEFT;
-        }
+        return switch (d) {
+            case UP -> Direction.DOWN;
+            case DOWN -> Direction.UP;
+            case LEFT -> Direction.RIGHT;
+            default -> Direction.LEFT;
+        };
     }
 }
