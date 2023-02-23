@@ -18,7 +18,7 @@ public class GameFrame extends JPanel implements ActionListener {
     Timer timer;
 
     public GameFrame(JFrame frame) {
-        timer = new Timer(GAME_FRAMES_PER_SECOND, this);
+        timer = new Timer(1000 / GAME_FRAMES_PER_SECOND, this);
         this.gameMaster = GameMaster.getInstance();
 
 

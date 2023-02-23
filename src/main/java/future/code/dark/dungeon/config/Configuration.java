@@ -9,7 +9,7 @@ public interface Configuration {
     String GAME_NAME="Dark Dungeon";
     String MAP_FILE_PATH = "src/main/resources/maps/map.ber";
     Boolean ENEMIES_ACTIVE = true;
-    int GAME_FRAMES_PER_SECOND = 250;
+    int GAME_FRAMES_PER_SECOND = 40;
     char WALL_CHARACTER = '1';
     char EXIT_CHARACTER = 'E';
     char LAND_CHARACTER = '0';
